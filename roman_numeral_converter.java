@@ -57,15 +57,19 @@ class romanNumber {
         }
         else if (num > 40 && num < 50){
             val += romanHashMap.get(40);
-            val += lessthan100(num%40);
+            val += lessthan10(num%10);
         }
         else if (num > 50 && num < 90){
             val +=  romanHashMap.get(50);
-            val += lessthan100(num%50);
+            int remainder = num%50;
+            for (int i = 0; i<remainder/10; i++){
+                val += romanHashMap.get(10);
+            }
+            val += lessthan10(remainder%10);
         }
         else if (num > 90 && num < 100){
             val += romanHashMap.get(90);
-            val += lessthan100(num%90);
+            val += lessthan10(num%10);
         }
         return val;
     }
@@ -81,13 +85,21 @@ class romanNumber {
             }
             val += lessthan100(num%100);
         }
-        else if (num > 400 && num < 900){
-            val +=  romanHashMap.get(500);
-            val += lessthan1k(num%500);
+        else if (num > 400 && num < 500){
+            val +=  romanHashMap.get(400);
+            val += lessthan100(num%400);
+        }
+        else if (num > 500 && num < 900){
+            val =  romanHashMap.get(500);
+            int remainder = num%500;
+            for (int i = 0; i< remainder/100; i++){
+                val += romanHashMap.get(100);
+            }
+            val += lessthan100(remainder%100);
         }
         else if (num > 900 && num < 1000){
             val = romanHashMap.get(900);
-            val += lessthan1k(num%900);
+            val += lessthan100(num%900);
         }
         return val;
     }
